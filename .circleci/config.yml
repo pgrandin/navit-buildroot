@@ -1,0 +1,12 @@
+version: 2
+
+jobs:
+  build_linux:
+  docker:
+    - image: ubuntu:16.04
+    steps:
+      - checkout
+      - run:
+          name: Build image
+          command: docker build -t buildroot:gtk .
+

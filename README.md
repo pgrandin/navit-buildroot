@@ -1,2 +1,2 @@
-# navit-buildroot
-Buildroot setup for Navit
+# buildroot
+Build images for raspberry pi
