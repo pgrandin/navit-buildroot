@@ -45,5 +45,5 @@ workflows:
       - build_toolchain
       - build_graphics_gtk:
           requires:
-            - toolchain
+            - build_toolchain
 
