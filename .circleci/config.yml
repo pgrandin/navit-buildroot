@@ -10,4 +10,5 @@ jobs:
       - run:
           name: Build image
           command: docker build -t buildroot:gtk .
+          timeout: 1200
 
