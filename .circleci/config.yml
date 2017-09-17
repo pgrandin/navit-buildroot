@@ -1,9 +1,12 @@
 version: 2
 
+defaults: &defaults
+  docker:
+    - image: docker:17.05.0-ce-git
+
 jobs:
-  build:
-    docker:
-      - image: docker:17.05.0-ce-git
+  build_toolchain:
+    <<: *defaults
     steps:
       - checkout
       - setup_remote_docker
@@ -16,4 +19,29 @@ jobs:
           command: |
             docker login -e="$DOCKER_EMAIL" -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
             docker push pgrandin/rpi0-buildroot:toolchain
+
+  build_graphics_gtk:
+    <<: *defaults
+    steps:
+      - checkout
+      - setup_remote_docker
+      - run:
+          name: Build image with GTK graphics driver
+          command: docker build -t pgrandin/rpi0-gtk:toolchain graphics-gtk
+          no_output_timeout: 1200
+      - run:
+          name: Push to docker
+          command: |
+            docker login -e="$DOCKER_EMAIL" -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
+            docker push pgrandin/rpi0-buildroot:graphics-gtk
+
+
+workflows:
+  version: 2
+  build_everything:
+    jobs:
+      - build_toolchain
+      - build_graphics_gtk:
+          requires:
+            - toolchain
 
