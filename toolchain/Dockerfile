@@ -9,5 +9,5 @@ RUN wget -nv -q https://buildroot.org/downloads/buildroot-2017.02.3.tar.gz \
 	&& tar xfz buildroot-2017.02.3.tar.gz -C ${BUILDROOT_DIR}  \
 	&& rm buildroot-2017.02.3.tar.gz
 
-RUN cd ${BUILDROOT_DIR}/buildroot-2017.02.3/ && make defconfig raspberrypi0_defconfig
+ADD config-toolchain ${BUILDROOT_DIR}/buildroot-2017.02.3/.config
 RUN cd ${BUILDROOT_DIR}/buildroot-2017.02.3/ && make toolchain
