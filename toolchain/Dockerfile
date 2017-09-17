@@ -9,5 +9,6 @@ RUN wget -nv -q https://buildroot.org/downloads/buildroot-2017.02.3.tar.gz \
 	&& tar xfz buildroot-2017.02.3.tar.gz -C ${BUILDROOT_DIR}  \
 	&& rm buildroot-2017.02.3.tar.gz
 
-ADD config-toolchain ${BUILDROOT_DIR}/buildroot-2017.02.3/.config
+ADD rpi0-glibc_toolchain ${BUILDROOT_DIR}/buildroot-2017.02.3/configs/rpi0-glibc_toolchain
+RUN cd ${BUILDROOT_DIR}/buildroot-2017.02.3/ && make defconfig rpi0-glibc_toolchain
 RUN cd ${BUILDROOT_DIR}/buildroot-2017.02.3/ && make toolchain
