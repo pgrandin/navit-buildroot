@@ -7,6 +7,9 @@ jobs:
     steps:
       - checkout
       - run:
+          name: Setup docker
+          command: apt-get update && apt-get install -y docker.io
+      - run:
           name: Build image
           command: docker build -t buildroot:gtk .
 
