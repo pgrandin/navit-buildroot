@@ -13,8 +13,8 @@ ADD package/navit ${BUILDROOT_DIR}/buildroot-2017.02.3/package/navit/
 COPY package/Config.in ${BUILDROOT_DIR}/buildroot-2017.02.3/package/Config.in
 COPY config-navit-gtk ${BUILDROOT_DIR}/buildroot-2017.02.3/.config
 COPY build.sh ${BUILDROOT_DIR}/buildroot-2017.02.3/build.sh
-RUN cd ${BUILDROOT_DIR}/buildroot-2017.02.3/ && bash build.sh toolchain
-RUN cd ${BUILDROOT_DIR}/buildroot-2017.02.3/ && bash build.sh
+RUN cd ${BUILDROOT_DIR}/buildroot-2017.02.3/ && make toolchain
+RUN cd ${BUILDROOT_DIR}/buildroot-2017.02.3/ && make
 
 # For testing purposes only
 RUN apt-get update  && apt-get install -y libncurses5-dev vim
