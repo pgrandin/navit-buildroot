@@ -25,6 +25,8 @@ jobs:
             docker tag pgrandin/rpi0-buildroot:toolchain pgrandin/rpi0-buildroot:${sha1}
             docker push pgrandin/rpi0-buildroot:toolchain
             docker push pgrandin/rpi0-buildroot:${sha1}
+      - store_artifacts:
+          path: /usr/local/share/buildroot-2017.02.3/output/images-toolchain
 
   build_graphics_gtk:
     <<: *defaults

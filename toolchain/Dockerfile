@@ -12,3 +12,4 @@ RUN wget -nv -q https://buildroot.org/downloads/buildroot-2017.02.3.tar.gz \
 ADD rpi0-glibc_defconfig ${BUILDROOT_DIR}/buildroot-2017.02.3/configs/rpi0-glibc_defconfig
 RUN cd ${BUILDROOT_DIR}/buildroot-2017.02.3/ && make defconfig rpi0-glibc_defconfig
 RUN cd ${BUILDROOT_DIR}/buildroot-2017.02.3/ && make toolchain
+RUN mv output/images output/images-toolchain
