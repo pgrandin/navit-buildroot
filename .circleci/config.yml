@@ -41,6 +41,24 @@ jobs:
             docker login -e="$DOCKER_EMAIL" -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
             docker push pgrandin/rpi0-buildroot:graphics-gtk
 
+  build_graphics_qt5:
+    <<: *defaults
+    steps:
+      - checkout
+      - setup_remote_docker
+      - run:
+          name: Build image with QT5 graphics driver
+          command: |
+            cp toolchain/rpi0-glibc_defconfig graphics-qt5/
+            cat graphics-qt5/navit-qt5_defconfig >> graphics-qt5/rpi0-glibc_defconfig
+            mv graphics-qt5/rpi0-glibc_defconfig graphics-qt5/navit-qt5_defconfig
+            docker build -t pgrandin/rpi0-buildroot:graphics-qt5
+          no_output_timeout: 1200
+      - run:
+          name: Push to docker
+          command: |
+            docker login -e="$DOCKER_EMAIL" -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
+            docker push pgrandin/rpi0-buildroot:graphics-qt5
 
 workflows:
   version: 2
@@ -50,4 +68,6 @@ workflows:
       - build_graphics_gtk:
           requires:
             - build_toolchain
-
+      - build_graphics_qt5:
+          requires:
+            - build_toolchain

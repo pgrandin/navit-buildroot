@@ -1,0 +1,23 @@
+config BR2_PACKAGE_NAVIT
+        bool "navit"
+        depends on BR2_PACKAGE_GLIBC
+        help
+          The OpenSource vector based navigation software
+
+          http://www.navit-project.org
+
+if BR2_PACKAGE_NAVIT
+
+config BR2_PACKAGE_NAVIT_GTK2
+	bool "enabled GTK2 graphics driver"
+	select BR2_PACKAGE_LIBGTK2
+	select BR2_PACKAGE_XORG7
+	help
+	  Enable the gtk2 (gtk_drawing_area) graphics driver
+
+config BR2_PACKAGE_NAVIT_QT5
+	bool "enabled QT5 graphics driver"
+	help
+	  Enable the QT5 (qml2) graphics driver
+
+endif
