@@ -29,7 +29,11 @@ jobs:
       - setup_remote_docker
       - run:
           name: Build image with GTK graphics driver
-          command: docker build -t pgrandin/rpi0-gtk:toolchain graphics-gtk
+          command: |
+            cp toolchain/rpi0-glibc_defconfig graphics-gtk/
+            cat graphics-gtk/navit-gtk_defconfig >> graphics-gtk/rpi0-glibc_defconfig
+            mv graphics-gtk/rpi0-glibc_defconfig graphics-gtk/navit-gtk_defconfig
+            docker build -t pgrandin/rpi0-gtk:toolchain graphics-gtk
           no_output_timeout: 1200
       - run:
           name: Push to docker
