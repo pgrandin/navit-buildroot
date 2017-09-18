@@ -19,9 +19,9 @@ jobs:
       - run:
           name: Push to docker
           command: |
-            export sha1=`git log --format=format:%H -1 toolchain/`
+            sha1=`git log --format=format:%H -1 toolchain/`
             docker login -e="$DOCKER_EMAIL" -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
-            docker tag pgrandin/rpi0-buildroot:toolchain:${sha1}
+            docker tag pgrandin/rpi0-buildroot:toolchain pgrandin/rpi0-buildroot:${sha1}
             docker push pgrandin/rpi0-buildroot:toolchain
             docker push pgrandin/rpi0-buildroot:${sha1}
 
@@ -44,7 +44,7 @@ jobs:
           command: |
             sha1=`git log --format=format:%H -1 graphics-gtk/`
             docker login -e="$DOCKER_EMAIL" -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
-            docker tag pgrandin/rpi0-buildroot:graphics-gtk:${sha1}
+            docker tag pgrandin/rpi0-buildroot:graphics-gtk pgrandin/rpi0-buildroot:${sha1}
             docker push pgrandin/rpi0-buildroot:graphics-gtk
             docker push pgrandin/rpi0-buildroot:${sha1}
 
@@ -67,7 +67,7 @@ jobs:
           command: |
             sha1=`git log --format=format:%H -1 graphics-qt5/`
             docker login -e="$DOCKER_EMAIL" -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
-            docker tag pgrandin/rpi0-buildroot:graphics-qt5:${sha1}
+            docker tag pgrandin/rpi0-buildroot:graphics-qt5 pgrandin/rpi0-buildroot:${sha1}
             docker push pgrandin/rpi0-buildroot:graphics-qt5
             docker push pgrandin/rpi0-buildroot:${sha1}
 
