@@ -7,4 +7,3 @@ ADD package/navit ${BUILDROOT_DIR}/buildroot-2017.02.3/package/navit/
 COPY package/Config.in ${BUILDROOT_DIR}/buildroot-2017.02.3/package/Config.in
 RUN cd ${BUILDROOT_DIR}/buildroot-2017.02.3/ && make defconfig navit-qt5_defconfig
 RUN cd ${BUILDROOT_DIR}/buildroot-2017.02.3/ && make
-RUN cd ${BUILDROOT_DIR}/buildroot-2017.02.3/ && mv output/images output/images-graphics-qt5

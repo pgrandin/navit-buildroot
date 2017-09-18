@@ -22,12 +22,14 @@ jobs:
           name: Push to docker
           command: |
             sha1=`git log --format=format:%H -1 toolchain/`
+            [ -d /output ] || mkdir /output
+            docker run -v /output:/output pgrandin/rpi0-buildroot:${sha1} cp -r /usr/local/share/buildroot-2017.02.3/output/ /output/toolchain/
             docker login -e="$DOCKER_EMAIL" -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
             docker tag pgrandin/rpi0-buildroot:toolchain pgrandin/rpi0-buildroot:${sha1}
             docker push pgrandin/rpi0-buildroot:toolchain
             docker push pgrandin/rpi0-buildroot:${sha1}
       - store_artifacts:
-          path: /usr/local/share/buildroot-2017.02.3/output/images-toolchain
+          path: /output
 
   build_graphics_gtk:
     <<: *defaults
@@ -38,6 +40,8 @@ jobs:
           name: Build image with GTK graphics driver
           command: |
             sha1=`git log --format=format:%H -1 graphics-gtk/`
+            [ -d /output ] || mkdir /output
+            docker run -v /output:/output pgrandin/rpi0-buildroot:${sha1} cp -r /usr/local/share/buildroot-2017.02.3/output/ /output/graphics-gtk/
             cp toolchain/rpi0-glibc_defconfig graphics-gtk/
             cat graphics-gtk/navit-gtk_defconfig >> graphics-gtk/rpi0-glibc_defconfig
             mv graphics-gtk/rpi0-glibc_defconfig graphics-gtk/navit-gtk_defconfig
@@ -54,7 +58,7 @@ jobs:
             docker push pgrandin/rpi0-buildroot:graphics-gtk
             docker push pgrandin/rpi0-buildroot:${sha1}
       - store_artifacts:
-          path: /usr/local/share/buildroot-2017.02.3/output/images-graphics-gtk2
+          path: /output
 
   build_graphics_qt5:
     <<: *defaults
@@ -65,6 +69,7 @@ jobs:
           name: Build image with QT5 graphics driver
           command: |
             sha1=`git log --format=format:%H -1 graphics-qt5/`
+            docker run -v /output:/output pgrandin/rpi0-buildroot:${sha1} cp -r /usr/local/share/buildroot-2017.02.3/output/ /output/graphics-qt5/
             cp toolchain/rpi0-glibc_defconfig graphics-qt5/
             cat graphics-qt5/navit-qt5_defconfig >> graphics-qt5/rpi0-glibc_defconfig
             mv graphics-qt5/rpi0-glibc_defconfig graphics-qt5/navit-qt5_defconfig
@@ -76,12 +81,13 @@ jobs:
           name: Push to docker
           command: |
             sha1=`git log --format=format:%H -1 graphics-qt5/`
+            [ -d /output ] || mkdir /output
             docker login -e="$DOCKER_EMAIL" -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
             docker tag pgrandin/rpi0-buildroot:graphics-qt5 pgrandin/rpi0-buildroot:${sha1}
             docker push pgrandin/rpi0-buildroot:graphics-qt5
             docker push pgrandin/rpi0-buildroot:${sha1}
       - store_artifacts:
-          path: /usr/local/share/buildroot-2017.02.3/output/images-graphics-qt5
+          path: /output
 
 workflows:
   version: 2
