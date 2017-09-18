@@ -53,6 +53,8 @@ jobs:
             docker tag pgrandin/rpi0-buildroot:graphics-gtk pgrandin/rpi0-buildroot:${sha1}
             docker push pgrandin/rpi0-buildroot:graphics-gtk
             docker push pgrandin/rpi0-buildroot:${sha1}
+      - store_artifacts:
+          path: /usr/local/share/buildroot-2017.02.3/output/images-graphics-gtk2
 
   build_graphics_qt5:
     <<: *defaults
@@ -78,6 +80,8 @@ jobs:
             docker tag pgrandin/rpi0-buildroot:graphics-qt5 pgrandin/rpi0-buildroot:${sha1}
             docker push pgrandin/rpi0-buildroot:graphics-qt5
             docker push pgrandin/rpi0-buildroot:${sha1}
+      - store_artifacts:
+          path: /usr/local/share/buildroot-2017.02.3/output/images-graphics-qt5
 
 workflows:
   version: 2
