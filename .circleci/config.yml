@@ -19,7 +19,7 @@ jobs:
       - run:
           name: Push to docker
           command: |
-            sha1=`git log --format=format:%H -1 toolchain/`
+            export sha1=`git log --format=format:%H -1 toolchain/`
             docker login -e="$DOCKER_EMAIL" -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
             docker tag pgrandin/rpi0-buildroot:toolchain:${sha1}
             docker push pgrandin/rpi0-buildroot:toolchain
