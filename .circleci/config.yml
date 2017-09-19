@@ -1,27 +1,31 @@
 version: 2
 
-defaults: &defaults
-  docker:
-    - image: docker:17.05.0-ce-git
-
 jobs:
   build_toolchain:
-    <<: *defaults
+    docker:
+      - image: docker:17.05.0-ce-git
+        environment:
+          target: rpi0
+          stage:  toolchain
     steps:
       - checkout
       - setup_remote_docker
       - run:
           name: Build image for toolchain
-          command: sh .circleci/build.sh "toolchain"
+          command: sh .circleci/build.sh
           no_output_timeout: 1200
       - run:
           name: Push to docker
-          command: sh .circleci/push.sh "toolchain"
+          command: sh .circleci/push.sh
       - store_artifacts:
           path: /output
 
   build_graphics_gtk:
-    <<: *defaults
+    docker:
+      - image: docker:17.05.0-ce-git
+        environment:
+          target: rpi0
+          stage:  graphics-gtk
     steps:
       - checkout
       - setup_remote_docker
@@ -31,16 +35,20 @@ jobs:
             cp toolchain/rpi0-glibc_defconfig graphics-gtk/
             cat graphics-gtk/navit-gtk_defconfig >> graphics-gtk/rpi0-glibc_defconfig
             mv graphics-gtk/rpi0-glibc_defconfig graphics-gtk/navit-gtk_defconfig
-            sh .circleci/build.sh "graphics-gtk"
+            sh .circleci/build.sh
           no_output_timeout: 1200
       - run:
           name: Push to docker
-          command: sh .circleci/push.sh "graphics-gtk"
+          command: sh .circleci/push.sh
       - store_artifacts:
           path: /output
 
   build_graphics_qt5:
-    <<: *defaults
+    docker:
+      - image: docker:17.05.0-ce-git
+        environment:
+          target: rpi0
+          stage:  graphics-qt5
     steps:
       - checkout
       - setup_remote_docker
@@ -50,11 +58,11 @@ jobs:
             cp toolchain/rpi0-glibc_defconfig graphics-qt5/
             cat graphics-qt5/navit-qt5_defconfig >> graphics-qt5/rpi0-glibc_defconfig
             mv graphics-qt5/rpi0-glibc_defconfig graphics-qt5/navit-qt5_defconfig
-            sh .circleci/build.sh "graphics-qt5"
+            sh .circleci/build.sh
           no_output_timeout: 1200
       - run:
           name: Push to docker
-          command: sh .circleci/push.sh "graphics-qt5"
+          command: sh .circleci/push.sh
       - store_artifacts:
           path: /output
 
