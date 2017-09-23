@@ -33,6 +33,10 @@ BR2_TARGET_ROOTFS_EXT2_4=y
 BR2_ROOTFS_POST_BUILD_SCRIPT="board/raspberrypi0/post-build.sh"
 BR2_ROOTFS_POST_IMAGE_SCRIPT="board/raspberrypi0/post-image.sh"
 
+# Disable getty
+# BR2_TARGET_GENERIC_GETTY is not set
+# BR2_TARGET_GENERIC_GETTY_BAUDRATE_KEEP is not set
+
 # Glibc based toolchain
 BR2_SSP_NONE=y
 BR2_TOOLCHAIN_USES_GLIBC=y
