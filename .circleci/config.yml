@@ -30,8 +30,12 @@ jobs:
       - checkout
       - setup_remote_docker
       - run:
-          name: Build image for toolchain
-          command: sh .circleci/build.sh
+          name: Build base image
+          command: |
+            cp toolchain/${target}-glibc_defconfig baseimage/
+            cat baseimage/baseimage_defconfig >> baseimage/${target}-glibc_defconfig
+            mv baseimage/${target}-glibc_defconfig baseimage/baseimage_defconfig
+            sh .circleci/build.sh
           no_output_timeout: 1200
       - run:
           name: Push to docker
@@ -114,8 +118,12 @@ jobs:
       - checkout
       - setup_remote_docker
       - run:
-          name: Build image for toolchain
-          command: sh .circleci/build.sh
+          name: Build base image
+          command: |
+            cp toolchain/${target}-glibc_defconfig baseimage/
+            cat baseimage/baseimage_defconfig >> baseimage/${target}-glibc_defconfig
+            mv baseimage/${target}-glibc_defconfig baseimage/baseimage_defconfig
+            sh .circleci/build.sh
           no_output_timeout: 1200
       - run:
           name: Push to docker
