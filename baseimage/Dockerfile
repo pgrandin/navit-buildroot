@@ -1,4 +1,4 @@
-FROM pgrandin/rpi0-buildroot:e4b48946ea389dfc622d1dee371468df02572dde
+FROM FROM pgrandin/%target%-buildroot:toolchain
 
 ENV BUILDROOT_DIR=/usr/local/share/
 
