@@ -12,4 +12,5 @@ RUN wget -nv -q https://buildroot.org/downloads/buildroot-2017.02.3.tar.gz \
 
 ADD ${target}-glibc_defconfig ${BUILDROOT_DIR}/buildroot-2017.02.3/configs/${target}-glibc_defconfig
 RUN cd ${BUILDROOT_DIR}/buildroot-2017.02.3/ && make defconfig ${target}-glibc_defconfig
-RUN cd ${BUILDROOT_DIR}/buildroot-2017.02.3/ && make toolchain
+RUN cd ${BUILDROOT_DIR}/buildroot-2017.02.3/ && make toolchain \
+       && rm -rf ${BUILDROOT_DIR}/buildroot-2017.02.3/dl
