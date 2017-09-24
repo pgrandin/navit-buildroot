@@ -1,5 +1,15 @@
 sha1=`git log --format=format:%H -1 ${stage}/`
 sed -i -e "s/%target%/${target}/" ${stage}/Dockerfile
+
+from=`grep "FROM pgrandin/" ${stage}/Dockerfile |cut -f2 -d ' '`
+
+if [[ "${from}" != "" ]]; then
+    from_tag=`echo $from|cut -f2 -d':'`
+    sha1_tag=`git log --format=format:%H -1 ${from_tag}/`
+    new_from=`echo $from|sed -e "s/${from_tag}/${sha1_tag}/"`
+    sed -i -e "s@${from}@${new_from}@" ${stage}/Dockerfile
+fi
+
 docker pull pgrandin/${target}-buildroot:${sha1} &&
    docker tag pgrandin/${target}-buildroot:${sha1} pgrandin/${target}-buildroot:${stage} ||
    docker build -t pgrandin/${target}-buildroot:${stage} ${stage}
