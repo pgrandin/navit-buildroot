@@ -10,6 +10,14 @@ if [[ "${from}" != "" ]]; then
     sed -i -e "s@${from}@${new_from}@" ${stage}/Dockerfile
 fi
 
+
+if [[ "${stage}" == "baseimage" ]]; then
+    cat toolchain/${target}-glibc_defconfig >> baseimage/baseimage_defconfig
+elif [[ "${stage}" != "toolchain" ]]; then
+    cat toolchain/${target}-glibc_defconfig >> ${stage}/${stage}_defconfig
+    cat baseimage/baseimage_defconfig >> ${stage}/${stage}_defconfig
+fi
+
 docker pull pgrandin/${target}-buildroot:${sha1} &&
    docker tag pgrandin/${target}-buildroot:${sha1} pgrandin/${target}-buildroot:${stage} ||
    docker build -t pgrandin/${target}-buildroot:${stage} ${stage}
