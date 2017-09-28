@@ -1,3 +1,5 @@
+set -x
+
 sha1=`git log --format=format:%H -1 ${stage}/`
 sed -i -e "s/%target%/${target}/" ${stage}/Dockerfile
 
