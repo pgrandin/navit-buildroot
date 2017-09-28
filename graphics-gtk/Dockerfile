@@ -1,4 +1,4 @@
-FROM pgrandin/rpi0-buildroot:baseimage
+FROM pgrandin/rpi0-buildroot:xorg
 
 ENV BUILDROOT_DIR=/usr/local/share/
 
