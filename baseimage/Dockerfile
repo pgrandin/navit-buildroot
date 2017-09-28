@@ -1,4 +1,4 @@
-FROM FROM pgrandin/%target%-buildroot:toolchain
+FROM pgrandin/%target%-buildroot:toolchain
 
 ENV BUILDROOT_DIR=/usr/local/share/
 
