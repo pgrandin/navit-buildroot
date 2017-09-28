@@ -16,9 +16,13 @@ fi
 
 if [[ "${stage}" == "baseimage" ]]; then
     cat toolchain/${target}-glibc_defconfig >> baseimage/baseimage_defconfig
-elif [[ "${stage}" != "toolchain" ]]; then
+elif [[ "${stage}" == "graphics-qt5" || "${stage}" == "xorg" ]]; then
     cat toolchain/${target}-glibc_defconfig >> ${stage}/${stage}_defconfig
     cat baseimage/baseimage_defconfig >> ${stage}/${stage}_defconfig
+elif [[ "${stage}" == "graphics-gtk" ]]; then
+    cat toolchain/${target}-glibc_defconfig >> ${stage}/${stage}_defconfig
+    cat baseimage/baseimage_defconfig >> ${stage}/${stage}_defconfig
+    cat baseimage/xorg_defconfig >> ${stage}/${stage}_defconfig
 fi
 
 docker pull pgrandin/${target}-buildroot:${sha1} &&
