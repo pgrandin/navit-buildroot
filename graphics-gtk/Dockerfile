@@ -1,4 +1,4 @@
-FROM pgrandin/rpi0-buildroot:6e0c33a199835564b2d19b300a11e3b7748d9681
+FROM pgrandin/rpi0-buildroot:baseimage
 
 ENV BUILDROOT_DIR=/usr/local/share/
 
