@@ -26,7 +26,7 @@ elif [[ "${stage}" == "graphics-gtk" ]]; then
     cat xorg/xorg_defconfig >> ${stage}/${stage}_defconfig
 fi
 
-unset -e
+set +e
 docker pull pgrandin/${target}-buildroot:${sha1} &&
    docker tag pgrandin/${target}-buildroot:${sha1} pgrandin/${target}-buildroot:${stage} ||
    docker build -t pgrandin/${target}-buildroot:${stage} ${stage}
