@@ -1,4 +1,5 @@
 set -x
+set -e
 
 sha1=`git log --format=format:%H -1 ${stage}/`
 sed -i -e "s/%target%/${target}/" ${stage}/Dockerfile
@@ -22,7 +23,7 @@ elif [[ "${stage}" == "graphics-qt5" || "${stage}" == "xorg" ]]; then
 elif [[ "${stage}" == "graphics-gtk" ]]; then
     cat toolchain/${target}-glibc_defconfig >> ${stage}/${stage}_defconfig
     cat baseimage/baseimage_defconfig >> ${stage}/${stage}_defconfig
-    cat baseimage/xorg_defconfig >> ${stage}/${stage}_defconfig
+    cat xorg/xorg_defconfig >> ${stage}/${stage}_defconfig
 fi
 
 docker pull pgrandin/${target}-buildroot:${sha1} &&
