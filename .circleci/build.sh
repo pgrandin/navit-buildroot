@@ -3,10 +3,11 @@ set -e
 
 git checkout ${stage}/Dockerfile
 
+sed -i -e "s/%target%/${target}/" ${stage}/Dockerfile
+
 find ${stage} -type f | xargs md5sum > ${stage}.txt
 tag=`md5sum ${stage}.txt | cut -d' ' -f1`
 # tag=`git log --format=format:%H -1 ${stage}/`
-sed -i -e "s/%target%/${target}/" ${stage}/Dockerfile
 
 echo "Going to build/check for pgrandin/${target}-buildroot:${tag}"
 
