@@ -134,6 +134,25 @@ jobs:
       - store_artifacts:
           path: /output
 
+  build_rpi3_xorg:
+    docker:
+      - image: docker:17.05.0-ce-git
+        environment:
+          target: rpi3
+          stage:  xorg
+    steps:
+      - checkout
+      - setup_remote_docker
+      - run:
+          name: Build image with a basic Xorg server
+          command: sh .circleci/build.sh
+          no_output_timeout: 1200
+      - run:
+          name: Push to docker
+          command: sh .circleci/push.sh
+      - store_artifacts:
+          path: /output
+
   build_rpi3_graphics_gtk:
     docker:
       - image: docker:17.05.0-ce-git
@@ -193,9 +212,12 @@ workflows:
       - build_rpi3_baseimage:
           requires:
             - build_rpi3_toolchain
-      - build_rpi3_graphics_gtk:
+      - build_rpi3_xorg:
           requires:
             - build_rpi3_baseimage
+      - build_rpi3_graphics_gtk:
+          requires:
+            - build_rpi3_xorg
       - build_rpi3_graphics_qt5:
           requires:
             - build_rpi3_baseimage
