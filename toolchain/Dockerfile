@@ -9,7 +9,7 @@ RUN apt-get update  && apt-get install -y expect-dev wget git build-essential fi
 
 RUN wget -nv -q https://github.com/buildroot/buildroot/archive/${BUILDROOT_VERSION}.tar.gz \
 	&& tar xfz ${BUILDROOT_VERSION}.tar.gz -C ${BUILDROOT_DIR}  \
-	&& rm buildroot-${BUILDROOT_VERSION}.tar.gz
+	&& rm ${BUILDROOT_VERSION}.tar.gz
 
 ADD ${target}-glibc_defconfig ${BUILDROOT_DIR}/buildroot-${BUILDROOT_VERSION}/configs/${target}-glibc_defconfig
 RUN cd ${BUILDROOT_DIR}/buildroot-${BUILDROOT_VERSION}/ && make defconfig ${target}-glibc_defconfig
