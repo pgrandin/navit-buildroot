@@ -5,7 +5,7 @@ git checkout ${stage}/Dockerfile
 
 sed -i -e "s/%target%/${target}/" ${stage}/Dockerfile
 
-find ${stage} -type f | xargs md5sum > ${stage}.txt
+find ${stage} -type f | xargs md5sum | sort > ${stage}.txt
 tag=`md5sum ${stage}.txt | cut -d' ' -f1`
 # tag=`git log --format=format:%H -1 ${stage}/`
 
