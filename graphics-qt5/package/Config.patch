@@ -1,0 +1,10 @@
+--- Config.in	2017-10-02 16:51:50.724815576 -0700
++++ Config.in	2017-10-02 16:51:43.748815672 -0700
+@@ -303,6 +303,7 @@
+ 	source "package/gtkperf/Config.in"
+ 	source "package/leafpad/Config.in"
+ 	source "package/midori/Config.in"
++	source "package/navit/Config.in"
+ 	source "package/nodm/Config.in"
+ 	source "package/pcmanfm/Config.in"
+ 	source "package/qt-webkit-kiosk/Config.in"
