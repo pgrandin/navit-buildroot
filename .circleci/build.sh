@@ -14,7 +14,7 @@ echo "Going to build/check for pgrandin/${target}-buildroot:${tag}"
 from=`grep "FROM pgrandin/" ${stage}/Dockerfile |cut -f2 -d ' '`
 if [[ "${from}" != "" ]]; then
     from_tag=`echo $from|cut -f2 -d':'`
-    find ${from_tag} -type f | xargs md5sum > ${from_tag}.txt
+    find ${from_tag} -type f | xargs md5sum | sort > ${from_tag}.txt
     from_md5=`md5sum ${from_tag}.txt | cut -d' ' -f1`
     new_from=`echo $from|sed -e "s/${from_tag}/${from_md5}/"`
     sed -i -e "s@${from}@${new_from}@" ${stage}/Dockerfile
