@@ -1,0 +1,39 @@
+--- a/CMakeLists.txt	2017-10-27 21:47:38.110769301 +0000
++++ b/CMakeLists.txt	2017-10-27 21:48:01.123768983 +0000
+@@ -176,7 +176,7 @@
+     add_feature (USE_QML "Qt5 Qt5Quick not found" FALSE)
+     if (Qt5Widgets_FOUND OR Qt5Quick_FOUND)
+       find_package(Qt5Svg REQUIRED)
+-      find_package(Qt5DBus REQUIRED)
++      # find_package(Qt5DBus REQUIRED)
+       find_package(Qt5Multimedia)
+       find_package(espeak)
+     endif (Qt5Widgets_FOUND OR Qt5Quick_FOUND)
+
+--- a/navit/graphics/qt5/graphics_qt5.cpp	2017-10-27 22:00:09.942758904 +0000
++++ b/navit/graphics/qt5/graphics_qt5.cpp	2017-10-27 22:00:39.453758496 +0000
+@@ -40,8 +40,8 @@
+ 
+ #include "event_qt5.h"
+ #include "graphics_qt5.h"
+-#include <QDBusConnection>
+-#include <QDBusInterface>
++//#include <QDBusConnection>
++//#include <QDBusInterface>
+ #include <QFile>
+ #include <QFont>
+ #include <QGuiApplication>
+@@ -711,10 +711,10 @@
+ keep_display_on(struct graphics_priv* priv)
+ {
+     //        dbg(lvl_debug,"enter\n");
+-    QDBusConnection system = QDBusConnection::connectToBus(QDBusConnection::SystemBus, "system");
+-    QDBusInterface interface("com.nokia.mce", "/com/nokia/mce/request", "com.nokia.mce.request", system);
++    // QDBusConnection system = QDBusConnection::connectToBus(QDBusConnection::SystemBus, "system");
++    // QDBusInterface interface("com.nokia.mce", "/com/nokia/mce/request", "com.nokia.mce.request", system);
+ 
+-    interface.call(QLatin1String("req_display_blanking_pause"));
++    // interface.call(QLatin1String("req_display_blanking_pause"));
+ }
+ #endif
+ 
