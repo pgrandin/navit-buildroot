@@ -26,6 +26,12 @@ else
 NAVIT_CONF_OPTS += -DDISABLE_QT=1 -Dgraphics/qt5=0 -Dvehicle/qt5=0
 endif
 
+ifeq ($(BR2_PACKAGE_NAVIT_SSD1306),y)
+NAVIT_VERSION = ssd1306
+NAVIT_SITE = git://github.com/pgrandin/navit
+NAVIT_DEPENDENCIES += ssd1306
+endif
+
 ifeq ($(BR2_PACKAGE_NAVIT_SPOTIFY_PLAYER),y)
 NAVIT_VERSION = audio
 NAVIT_DEPENDENCIES += alsa-lib libspotify
@@ -40,9 +46,5 @@ endif
 ifeq ($(BR2_PACKAGE_NAVIT_J1850_PLUGIN),y)
 NAVIT_CONF_OPTS += -Dplugin/j1850=1
 endif
-
-# define NAVIT_INSTALL_TARGET_CMDS
-# 	$(INSTALL) -D -m 0755 $(@D)/navit-init $(TARGET_DIR)/etc/init.d/S90navit	
-# endef
 
 $(eval $(cmake-package))
