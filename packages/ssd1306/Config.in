@@ -1,0 +1,4 @@
+config BR2_PACKAGE_SSD1306
+        bool "ssd1306"
+        help
+          Hallard's SSD 1306
