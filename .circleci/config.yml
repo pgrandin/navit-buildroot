@@ -10,7 +10,7 @@ jobs:
       - checkout
       - run:
           name: setup prerequisites
-          command: apt-get update && apt-get install wget
+          command: apt-get update && apt-get install -y wget
       - run:
           name: Build image
           command: |
