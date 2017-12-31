@@ -9,6 +9,9 @@ jobs:
     steps:
       - checkout
       - run:
+          name: setup prerequisites
+          command: apt-get update && apt-get install wget
+      - run:
           name: Build image
           command: |
                cd cherokee && bash build.sh
