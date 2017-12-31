@@ -3,16 +3,15 @@ version: 2
 jobs:
   build_cherokee:
     docker:
-      - image: docker:17.05.0-ce-git
+      - image: ubuntu:16.04
         environment:
           target: rpi2
     steps:
       - checkout
-      - setup_remote_docker
       - run:
           name: Build image
           command: |
-               cd cherokee && sh build.sh
+               cd cherokee && bash build.sh
           no_output_timeout: 1200
       - store_artifacts:
           path: cherokee/local_build/buildroot-2017.08/output/images/
