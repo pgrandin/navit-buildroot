@@ -10,4 +10,4 @@ wget -nv -q https://github.com/buildroot/buildroot/archive/${BUILDROOT_VERSION}.
 cp go.sh ${BUILDROOT_DIR}/buildroot-${BUILDROOT_VERSION}/
 cp -r ../packages/* ${BUILDROOT_DIR}/buildroot-${BUILDROOT_VERSION}/packages/
 pushd ${BUILDROOT_DIR}/buildroot-${BUILDROOT_VERSION}/
-patch -p0 < packages/package.patch
+patch -p0 < ../../../packages/package.patch
