@@ -1,4 +1,9 @@
-BUILDROOT_DIR="local_build"
+if [ -z ${target+x} ]; then
+	echo "You must set the target via an environment variable"
+	exit -1
+fi
+
+BUILDROOT_DIR="${target}"
 BUILDROOT_VERSION="2017.08"
 
 mkdir -p ${BUILDROOT_DIR}

@@ -102,8 +102,6 @@ BR2_GENERATE_LOCALE="en_US"
 BR2_TARGET_TZ_INFO=y
 BR2_TARGET_LOCALTIME="America/Los_Angeles"
 
-BR2_ROOTFS_POST_IMAGE_SCRIPT="../../custom-post-image.sh board/raspberrypi3/post-image.sh"
-
 BR2_PACKAGE_FBV=y
 BR2_PACKAGE_FBV_PNG=y
 BR2_PACKAGE_FBV_JPEG=y
