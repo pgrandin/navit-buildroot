@@ -1,0 +1,3 @@
+[submodule "cherokee/overlay/usr/share/navit/navit-nuc-layout"]
+	path = cherokee/overlay/usr/share/navit/navit-nuc-layout
+	url = https://github.com/pgrandin/navit-nuc-layout

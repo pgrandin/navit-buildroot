@@ -1,4 +1,4 @@
-FROM pgrandin/%target%-buildroot:baseimage
+FROM pgrandin/rpi0-buildroot:baseimage
 
 ENV BUILDROOT_DIR=/usr/local/share/
 ENV BUILDROOT_VERSION="2017.08"
