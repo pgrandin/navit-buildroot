@@ -8,6 +8,6 @@ wget -nv -q https://github.com/buildroot/buildroot/archive/${BUILDROOT_VERSION}.
 	&& rm ${BUILDROOT_VERSION}.tar.gz
 
 cp go.sh ${BUILDROOT_DIR}/buildroot-${BUILDROOT_VERSION}/
-cp -r ../packages/* ${BUILDROOT_DIR}/buildroot-${BUILDROOT_VERSION}/packages/
+cp -r ../packages/* ${BUILDROOT_DIR}/buildroot-${BUILDROOT_VERSION}/package/
 pushd ${BUILDROOT_DIR}/buildroot-${BUILDROOT_VERSION}/
 patch -p0 < ../../../packages/package.patch
