@@ -32,7 +32,7 @@ jobs:
       - save_cache:
           key: toolchain-{{ checksum "cherokee/glibc_defconfig" }}
           paths:
-            - "cherokee/${target}/buildroot-2017.08/output/host/"
+            - "cherokee/raspberrypi2/buildroot-2017.08/output/host/"
       - run:
           name: Build kernel
           command: |
