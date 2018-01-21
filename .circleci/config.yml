@@ -35,9 +35,9 @@ defaults: &defaults
         key: cache-{{ .Environment.CIRCLE_JOB }}-toolchain-{{ checksum "cherokee/glibc_defconfig" }}
         paths:
           - "cherokee/raspberrypi2/buildroot-2017.08/output/host/"
-          - "cherokee/raspberrypi2/buildroot-2017.08/output/build/host-*"
+          - "cherokee/raspberrypi2/buildroot-2017.08/output/build/"
           - "cherokee/raspberrypi3/buildroot-2017.08/output/host/"
-          - "cherokee/raspberrypi3/buildroot-2017.08/output/build/host-*"
+          - "cherokee/raspberrypi3/buildroot-2017.08/output/build/"
     - run:
         name: Build kernel
         command: |
@@ -54,8 +54,10 @@ defaults: &defaults
     - save_cache:
         key: cache-{{ .Environment.CIRCLE_JOB }}-qt5base-{{ checksum "cherokee/cherokee_defconfig" }}
         paths:
-          - "cherokee/raspberrypi2/buildroot-2017.08/output/build/qt5base-*"
-          - "cherokee/raspberrypi3/buildroot-2017.08/output/build/qt5base-*"
+          - "cherokee/raspberrypi2/buildroot-2017.08/output/build/qt5base-5.9.1"
+          - "cherokee/raspberrypi3/buildroot-2017.08/output/build/qt5base-5.9.1"
+          - "cherokee/raspberrypi2/buildroot-2017.08/output/build/qt5declarative-5.9.1"
+          - "cherokee/raspberrypi3/buildroot-2017.08/output/build/qt5declarative-5.9.1"
     - run:
         name: Build image
         command: |
