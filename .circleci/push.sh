@@ -8,7 +8,7 @@ docker push pgrandin/${target}-buildroot:${tag}
 
 echo "pgrandin/${target}-buildroot:${tag} tagged as pgrandin/${target}-buildroot:${stage}"
 
-docker run pgrandin/${target}-buildroot:${tag} ls /usr/local/share/buildroot-2017.02.3/output/images/
+docker run pgrandin/${target}-buildroot:${tag} ls /usr/local/share/buildroot-2017.08/output/images/
 container=`docker ps -a|grep ${tag}|cut -f1 -d" "`
 [ -d /output ] || mkdir /output
-docker cp ${container}:/usr/local/share/buildroot-2017.02.3/output/images/ /output/${stage}
+docker cp ${container}:/usr/local/share/buildroot-2017.08/output/images/ /output/${stage}

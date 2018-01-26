@@ -1,0 +1,29 @@
+--- a/navit/navit_shipped.xml	2017-10-27 21:42:43.526773374 +0000
++++ b/navit/navit_shipped.xml	2017-10-27 21:43:17.646772903 +0000
+@@ -33,14 +33,14 @@
+ 		Center coordinates format: "Long Lat" in decimal degrees (WGS 84).
+ 		For other formats see http://wiki.navit-project.org/index.php/Coordinate_format.
+ 		-->
+-	<navit center="11.5666 48.1333" zoom="256" tracking="1" orientation="-1" recent_dest="250" drag_bitmap="0">
++	<navit center="11.5666 48.1333" zoom="32" tracking="1" orientation="-1" recent_dest="250" drag_bitmap="0">
+ 		<!-- Use one of gtk_drawing_area, qt_qpainter or sdl. 
+ 		     On windows systems, use win32 -->
+-		<graphics type="gtk_drawing_area"/>
++		<graphics type="qt5"/>
+ 		<!-- The following line let you select which graphical user interface you'd like to use.
+ 		Options include internal (optimized for touch screen devices), gtk (useful for desktop computers).
+ 		If you don't like the internal gui, set enabled=yes for the following tag and enabled=no for the gui internal tag -->
+-		<gui type="gtk" enabled="no" menubar="1" toolbar="1" statusbar="1"/>
++		<gui type="qt5_qml" enabled="yes" />
+ 	<!--
+ 			In case of the internal GUI, you can even influence the size of the text and of the icons in the toolbar and the viewport.
+ 			Here's an example for a freerunner: -->
+@@ -48,7 +48,7 @@
+ 		<!-- The action that appears on map click is configurable with the attribute "on_map_click".
+ 		     To get the prvious behaviour of showing the map point menu use on_map_click='menu("#Map Point")'
+ 	        -->
+-		<gui type="internal" enabled="yes"><![CDATA[
++		<gui type="no" enabled="yes"><![CDATA[
+ 			<html>
+ 				<a name='Main Menu'><text>Main menu</text>
+ 					<a href='#Actions'><img src='gui_actions'>Actions</img></a>

@@ -1,0 +1,15 @@
+--- a/navit/navit_shipped.xml	2017-10-27 21:42:43.526773374 +0000
++++ b/navit/navit_shipped.xml	2017-10-27 21:43:17.646772903 +0000
+@@ -33,10 +33,10 @@
+ 		Center coordinates format: "Long Lat" in decimal degrees (WGS 84).
+ 		For other formats see http://wiki.navit-project.org/index.php/Coordinate_format.
+ 		-->
+-	<navit center="11.5666 48.1333" zoom="256" tracking="1" orientation="-1" recent_dest="250" drag_bitmap="0">
++	<navit center="11.5666 48.1333" zoom="32" tracking="1" orientation="-1" recent_dest="250" drag_bitmap="0">
+ 		<!-- Use one of gtk_drawing_area, qt_qpainter or sdl. 
+ 		     On windows systems, use win32 -->
+-		<graphics type="gtk_drawing_area"/>
++		<graphics type="qt5"/>
+ 		<!-- The following line let you select which graphical user interface you'd like to use.
+ 		Options include internal (optimized for touch screen devices), gtk (useful for desktop computers).
+ 		If you don't like the internal gui, set enabled=yes for the following tag and enabled=no for the gui internal tag -->
