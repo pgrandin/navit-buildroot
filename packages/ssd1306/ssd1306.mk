@@ -26,6 +26,8 @@ define SSD1306_INSTALL_STAGING_CMDS
         cp $(@D)/ArduiPi_*.h $(STAGING_DIR)/usr/include/
         cp $(@D)/Adafruit_*.h $(STAGING_DIR)/usr/include/
         cp $(@D)/bcm2835.h* $(STAGING_DIR)/usr/include/
+        cp $(@D)/$(SSD1306_LIBNAME) $(STAGING_DIR)/usr/lib/
+	ln $(STAGING_DIR)/usr/lib/$(SSD1306_LIBNAME) $(STAGING_DIR)/usr/lib/$(SSD1306_LIB)
         cp $(@D)/$(SSD1306_LIBNAME) $(TARGET_DIR)/usr/lib/
 	ln $(TARGET_DIR)/usr/lib/$(SSD1306_LIBNAME) $(TARGET_DIR)/usr/lib/$(SSD1306_LIB)
 endef

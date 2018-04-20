@@ -1,0 +1,11 @@
+--- a/bcm2835.c	2018-04-20 10:20:44.914935364 -0700
++++ b/bcm2835.c	2018-04-20 10:21:05.672935077 -0700
+@@ -25,7 +25,7 @@
+ #include <stdlib.h>
+ #include <fcntl.h>
+ #include <sys/ioctl.h>
+-#include <linux/i2c-dev.h>
++#include "i2c-dev.h"
+ 
+ #include <errno.h>
+ #include <sys/mman.h>
