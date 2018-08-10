@@ -100,6 +100,7 @@ jobs:
   speedsaver_orangepi:
     environment:
       target: orangepi_zero
+      BUILDROOT_VERSION: "650818fb3a6fb7b9bd9fcefabbc187c1bbe95e0a"
     docker:
       - image: ubuntu:16.04
     steps:
@@ -112,7 +113,53 @@ jobs:
           command: |
                cd speedsaver && bash build.sh
           no_output_timeout: 1200
-
+      - run:
+          name: Prepare config
+          command: |
+               cd speedsaver/${target}/buildroot-${BUILDROOT_VERSION}/ && cat configs/${target}_defconfig ../../glibc_defconfig ../../speedsaver_defconfig > configs/speedsaver-${target}_defconfig && make defconfig speedsaver-${target}_defconfig
+          no_output_timeout: 1200
+      - restore_cache:
+         keys:
+           - cache-{{ .Environment.CIRCLE_JOB }}-toolchain-{{ checksum "speedsaver/glibc_defconfig" }}
+      - run:
+          name: Build toolchain
+          command: |
+               cd speedsaver/${target}/buildroot-${BUILDROOT_VERSION}/ && make toolchain
+          no_output_timeout: 1200
+      - run:
+          name: Build host-cmake
+          command: |
+               cd speedsaver/${target}/buildroot-${BUILDROOT_VERSION}/ && \
+               [ -d output/build/host-cmake ] || make BR2_JLEVEL=2 host-cmake-rebuild
+          no_output_timeout: 1200
+      - save_cache:
+          key: cache-{{ .Environment.CIRCLE_JOB }}-toolchain-{{ checksum "speedsaver/glibc_defconfig" }}
+          paths:
+            - "speedsaver/orangepi_zero/buildroot-${BUILDROOT_VERSION}/output/host/"
+            - "speedsaver/orangepi_zero/buildroot-${BUILDROOT_VERSION}/output/build/"
+      - restore_cache:
+         keys:
+           - cache-{{ .Environment.CIRCLE_JOB }}-kernel-9126e25b0934bd7bd843763310ea4b34c6e139d0
+      - run:
+          name: Build kernel
+          command: |
+               cd speedsaver/${target}/buildroot-${BUILDROOT_VERSION}/ && \
+               [ -d output/build/linux-9126e25b0934bd7bd843763310ea4b34c6e139d0 ] || make linux-rebuild
+          no_output_timeout: 1200
+      - save_cache:
+          key: cache-{{ .Environment.CIRCLE_JOB }}-kernel-9126e25b0934bd7bd843763310ea4b34c6e139d0
+          paths:
+            - "speedsaver/orangepi_zero/buildroot-${BUILDROOT_VERSION}/output/linux-9126e25b0934bd7bd843763310ea4b34c6e139d0/"
+      - restore_cache:
+         keys:
+           - cache-{{ .Environment.CIRCLE_JOB }}-qt5base-{{ checksum "speedsaver/speedsaver_defconfig" }}
+      - run:
+          name: Build image
+          command: |
+               cd speedsaver/${target}/buildroot-${BUILDROOT_VERSION}/ && make
+          no_output_timeout: 1200
+      - store_artifacts:
+          path: speedsaver/orangepi_zero/buildroot-${BUILDROOT_VERSION}/output/images/
 
 workflows:
   version: 2
