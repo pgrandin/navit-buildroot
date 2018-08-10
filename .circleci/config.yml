@@ -91,7 +91,7 @@ jobs:
   raspberrypi2:
     <<: *defaults
     environment:
-      target: raspberrypi3
+      target: raspberrypi2
   raspberrypi3:
     <<: *defaults
     environment:
