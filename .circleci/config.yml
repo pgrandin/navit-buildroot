@@ -107,7 +107,7 @@ jobs:
       - checkout
       - run:
           name: setup prerequisites
-          command: apt-get update && apt-get install -y  expect-dev wget git build-essential file cpio unzip python bc
+          command: apt-get update && apt-get install -y  expect-dev wget git build-essential file cpio unzip python bc bison
       - run:
           name: Prepare build
           command: |
