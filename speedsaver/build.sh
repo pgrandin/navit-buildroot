@@ -1,3 +1,7 @@
+#!/bin/bash
+
+set -e
+
 if [ -z ${target+x} ]; then
 	echo "You must set the target via an environment variable"
 	exit -1
@@ -19,6 +23,10 @@ cp go.sh ${BUILDROOT_DIR}/buildroot-${BUILDROOT_VERSION}/
 cp 0004-ARM-dts-orange-pi-zero-enable-i2c.patch ${BUILDROOT_DIR}/buildroot-${BUILDROOT_VERSION}/board/orangepi/orangepi-zero/patches/linux/
 cp -r ../packages/* ${BUILDROOT_DIR}/buildroot-${BUILDROOT_VERSION}/package/
 pushd ${BUILDROOT_DIR}/buildroot-${BUILDROOT_VERSION}/
+
+
+git reset --hard ${COMMIT}
+
 patch -p0 < ../../../packages/package.patch
 # patch -p0 < ../../../packages/rpi-userland.patch
 
