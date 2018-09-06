@@ -1,0 +1,7 @@
+if [ -f /tmp/resized ]; then
+  exit;
+fi
+
+dd if=/root/resize.fb of=/dev/fb0 
+/sbin/resize2fs /dev/mmcblk0p2
+chmod -x /etc/init.d/S01resizefs
