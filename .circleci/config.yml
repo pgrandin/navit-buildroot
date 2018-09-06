@@ -153,10 +153,12 @@ jobs:
       - run:
           name: Build image
           command: |
-               cd speedsaver/${target}/buildroot-${BUILDROOT_VERSION}/ && make
+               cd speedsaver/${target}/buildroot-${BUILDROOT_VERSION}/ && make && \
+               mkdir speedsaver/output/ && \
+               mv speedsaver/${target}/buildroot-${BUILDROOT_VERSION}/output/images/sdcard.img speedsaver/output/speedsaver-orangepi_zero-${CIRCLE_SHA1}.img
           no_output_timeout: 1200
       - store_artifacts:
-          path: speedsaver/${target}/buildroot-${BUILDROOT_VERSION}/output/images/
+          path: speedsaver/output
 
 workflows:
   version: 2
