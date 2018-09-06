@@ -5,7 +5,7 @@
 ################################################################################
 
 LIBSPOTIFY_VERSION = 12.1.103-Linux-armv6-bcm2708hardfp-release
-LIBSPOTIFY_SITE = https://github.com/mopidy/libspotify-archive/raw/master/
+LIBSPOTIFY_SITE = https://github.com/mopidy/libspotify-archive/raw/master
 LIBSPOTIFY_LICENSE = GPL-2
 LIBSPOTIFY_INSTALL_TARGET = YES
 LIBSPOTIFY_INSTALL_STAGING = YES
