@@ -150,9 +150,6 @@ jobs:
           key: cache-{{ .Environment.CIRCLE_JOB }}-kernel-9126e25b0934bd7bd843763310ea4b34c6e139d0
           paths:
             - "speedsaver/orangepi_zero/buildroot-${BUILDROOT_VERSION}/output/linux-9126e25b0934bd7bd843763310ea4b34c6e139d0/"
-      - restore_cache:
-         keys:
-           - cache-{{ .Environment.CIRCLE_JOB }}-qt5base-{{ checksum "speedsaver/speedsaver_defconfig" }}
       - run:
           name: Build image
           command: |
