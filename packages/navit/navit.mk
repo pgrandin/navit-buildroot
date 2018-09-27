@@ -26,9 +26,9 @@ else
 NAVIT_CONF_OPTS += -DDISABLE_QT=1 -Dgraphics/qt5=0 -Dvehicle/qt5=0
 endif
 
-ifeq ($(BR2_PACKAGE_NAVIT_SSD1306),y)
+ifeq ($(BR2_PACKAGE_NAVIT_SPEEDSAVER),y)
 NAVIT_VERSION = ssd1306
-NAVIT_SITE = git://github.com/pgrandin/navit
+NAVIT_SITE = git://github.com/speedsaver/navit
 NAVIT_DEPENDENCIES += ssd1306
 endif
 
