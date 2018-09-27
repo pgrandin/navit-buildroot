@@ -23,11 +23,11 @@ config BR2_PACKAGE_NAVIT_QT5
 	help
 	  Enable the QT5 (qml2) graphics driver
 
-config BR2_PACKAGE_NAVIT_SSD1306
-	bool "enable ssd1306 graphics driver"
+config BR2_PACKAGE_NAVIT_SPEEDSAVER
+	bool "enable the speedsaver build"
 	select BR2_PACKAGE_SSD1306
 	help
-	  Enable the ssd1306 graphics driver
+	  Enable the speedsaver build
 
 config BR2_PACKAGE_NAVIT_SPOTIFY_PLAYER
 	bool "enabled spotify player"
