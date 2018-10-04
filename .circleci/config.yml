@@ -127,6 +127,11 @@ jobs:
          keys:
            - cache-{{ .Environment.CIRCLE_JOB }}-toolchain-{{ checksum "speedsaver/glibc_defconfig" }}
       - run:
+          name: Download sources
+          command: |
+               cd speedsaver/${target}/buildroot-${BUILDROOT_VERSION}/ && make source
+          no_output_timeout: 1200
+      - run:
           name: Build toolchain
           command: |
                cd speedsaver/${target}/buildroot-${BUILDROOT_VERSION}/ && make toolchain
