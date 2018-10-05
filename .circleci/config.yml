@@ -243,12 +243,6 @@ jobs:
           paths:
             - "speedsaver/orangepi_zero/buildroot-${BUILDROOT_VERSION}/output/linux-9126e25b0934bd7bd843763310ea4b34c6e139d0/"
       - run:
-          name: Download maps
-          command: |
-               wget -q --show-progress --progress=dot:mega --no-check-certificate $MAPS_URL -O maps.zip && \
-               unzip maps.zip -d speedsaver/overlay/usr/share/navit/maps/ && \
-               mv speedsaver/overlay/usr/share/navit/maps/*/*.{bin,xml} speedsaver/overlay/usr/share/navit/maps/
-      - run:
           name: Build image
           command: |
                cd speedsaver/${target}/buildroot-${BUILDROOT_VERSION}/ && make
