@@ -174,7 +174,7 @@ jobs:
           name: Prepare artifacts
           command: |
                mkdir speedsaver/output/ && \
-               mv speedsaver/${target}/buildroot-${BUILDROOT_VERSION}/output/images/sdcard.img speedsaver/output/speedsaver-orangepi_zero-${CIRCLE_SHA1}.img
+               mv speedsaver/${target}/buildroot-${BUILDROOT_VERSION}/output/images/sdcard.img speedsaver/output/speedsaver-${target}-${CIRCLE_SHA1}.img
           no_output_timeout: 1200
       - store_artifacts:
           path: speedsaver/output
@@ -250,7 +250,7 @@ jobs:
           name: Prepare artifacts
           command: |
                mkdir speedsaver/output/ && \
-               mv speedsaver/${target}/buildroot-${BUILDROOT_VERSION}/output/images/sdcard.img speedsaver/output/speedsaver-orangepi_zero-${CIRCLE_SHA1}.img
+               mv speedsaver/${target}/buildroot-${BUILDROOT_VERSION}/output/images/sdcard.img speedsaver/output/speedsaver-${target}-${CIRCLE_SHA1}.img
           no_output_timeout: 1200
       - store_artifacts:
           path: speedsaver/output
