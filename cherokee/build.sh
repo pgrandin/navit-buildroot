@@ -4,7 +4,7 @@ if [ -z ${target+x} ]; then
 fi
 
 BUILDROOT_DIR="${target}"
-BUILDROOT_VERSION="2017.08"
+BUILDROOT_VERSION="2018.02.7"
 
 mkdir -p ${BUILDROOT_DIR}
 
@@ -16,4 +16,4 @@ cp go.sh ${BUILDROOT_DIR}/buildroot-${BUILDROOT_VERSION}/
 cp -r ../packages/* ${BUILDROOT_DIR}/buildroot-${BUILDROOT_VERSION}/package/
 pushd ${BUILDROOT_DIR}/buildroot-${BUILDROOT_VERSION}/
 patch -p0 < ../../../packages/package.patch
-patch -p0 < ../../../packages/rpi-userland.patch
+# patch -p0 < ../../../packages/rpi-userland.patch
