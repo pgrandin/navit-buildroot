@@ -16,7 +16,7 @@ defaults: &defaults
     - run:
         name: Prepare config
         command: |
-             cd cherokee/${target}/buildroot-2017.08/ && cat configs/${target}_defconfig ../../glibc_defconfig ../../cherokee_defconfig > configs/cherokee-${target}_defconfig && make defconfig cherokee-${target}_defconfig
+             cd cherokee/${target}/buildroot-${BUILDROOT_VERSION}/ && cat configs/${target}_defconfig ../../glibc_defconfig ../../cherokee_defconfig > configs/cherokee-${target}_defconfig && make defconfig cherokee-${target}_defconfig
         no_output_timeout: 1200
     - restore_cache:
        keys:
@@ -24,68 +24,68 @@ defaults: &defaults
     - run:
         name: Build toolchain
         command: |
-             cd cherokee/${target}/buildroot-2017.08/ && make toolchain
+             cd cherokee/${target}/buildroot-${BUILDROOT_VERSION}/ && make toolchain
         no_output_timeout: 1200
     - run:
         name: Build host-cmake
         command: |
-             cd cherokee/${target}/buildroot-2017.08/ && \
+             cd cherokee/${target}/buildroot-${BUILDROOT_VERSION}/ && \
              [ -d output/build/host-cmake ] || make BR2_JLEVEL=2 host-cmake-rebuild
         no_output_timeout: 1200
     - save_cache:
         key: cache-{{ .Environment.CIRCLE_JOB }}-toolchain-{{ checksum "cherokee/glibc_defconfig" }}
         paths:
-          - "cherokee/raspberrypi2/buildroot-2017.08/output/host/"
-          - "cherokee/raspberrypi2/buildroot-2017.08/output/build/"
-          - "cherokee/raspberrypi3/buildroot-2017.08/output/host/"
-          - "cherokee/raspberrypi3/buildroot-2017.08/output/build/"
+          - "cherokee/raspberrypi2/buildroot-${BUILDROOT_VERSION}/output/host/"
+          - "cherokee/raspberrypi2/buildroot-${BUILDROOT_VERSION}/output/build/"
+          - "cherokee/raspberrypi3/buildroot-${BUILDROOT_VERSION}/output/host/"
+          - "cherokee/raspberrypi3/buildroot-${BUILDROOT_VERSION}/output/build/"
     - restore_cache:
        keys:
          - cache-{{ .Environment.CIRCLE_JOB }}-kernel-9126e25b0934bd7bd843763310ea4b34c6e139d0
     - run:
         name: Build kernel
         command: |
-             cd cherokee/${target}/buildroot-2017.08/ && \
+             cd cherokee/${target}/buildroot-${BUILDROOT_VERSION}/ && \
              [ -d output/build/linux-9126e25b0934bd7bd843763310ea4b34c6e139d0 ] || make linux-rebuild
         no_output_timeout: 1200
     - save_cache:
         key: cache-{{ .Environment.CIRCLE_JOB }}-kernel-9126e25b0934bd7bd843763310ea4b34c6e139d0
         paths:
-          - "cherokee/raspberrypi2/buildroot-2017.08/output/linux-9126e25b0934bd7bd843763310ea4b34c6e139d0/"
-          - "cherokee/raspberrypi3/buildroot-2017.08/output/linux-9126e25b0934bd7bd843763310ea4b34c6e139d0/"
+          - "cherokee/raspberrypi2/buildroot-${BUILDROOT_VERSION}/output/linux-9126e25b0934bd7bd843763310ea4b34c6e139d0/"
+          - "cherokee/raspberrypi3/buildroot-${BUILDROOT_VERSION}/output/linux-9126e25b0934bd7bd843763310ea4b34c6e139d0/"
     - restore_cache:
        keys:
          - cache-{{ .Environment.CIRCLE_JOB }}-qt5base-{{ checksum "cherokee/cherokee_defconfig" }}
     - run:
         name: Build qt5base
         command: |
-             cd cherokee/${target}/buildroot-2017.08/ && \
+             cd cherokee/${target}/buildroot-${BUILDROOT_VERSION}/ && \
              [ -d output/build/qt5base-5.9.1 ] || make BR2_JLEVEL=2 qt5base-rebuild
         no_output_timeout: 1200
     - run:
         name: Build qtdeclarative
         command: |
-             cd cherokee/${target}/buildroot-2017.08/ && \
+             cd cherokee/${target}/buildroot-${BUILDROOT_VERSION}/ && \
              [ -d output/build/qt5declarative-5.9.1 ] || make BR2_JLEVEL=2 qt5declarative-rebuild
         no_output_timeout: 1200
     - save_cache:
         key: cache-{{ .Environment.CIRCLE_JOB }}-qt5base-{{ checksum "cherokee/cherokee_defconfig" }}
         paths:
-          - "cherokee/raspberrypi2/buildroot-2017.08/output/host/"
-          - "cherokee/raspberrypi3/buildroot-2017.08/output/host/"
-          - "cherokee/raspberrypi2/buildroot-2017.08/output/build/qt5base-5.9.1"
-          - "cherokee/raspberrypi3/buildroot-2017.08/output/build/qt5base-5.9.1"
-          - "cherokee/raspberrypi2/buildroot-2017.08/output/build/qt5declarative-5.9.1"
-          - "cherokee/raspberrypi3/buildroot-2017.08/output/build/qt5declarative-5.9.1"
+          - "cherokee/raspberrypi2/buildroot-${BUILDROOT_VERSION}/output/host/"
+          - "cherokee/raspberrypi3/buildroot-${BUILDROOT_VERSION}/output/host/"
+          - "cherokee/raspberrypi2/buildroot-${BUILDROOT_VERSION}/output/build/qt5base-5.9.1"
+          - "cherokee/raspberrypi3/buildroot-${BUILDROOT_VERSION}/output/build/qt5base-5.9.1"
+          - "cherokee/raspberrypi2/buildroot-${BUILDROOT_VERSION}/output/build/qt5declarative-5.9.1"
+          - "cherokee/raspberrypi3/buildroot-${BUILDROOT_VERSION}/output/build/qt5declarative-5.9.1"
     - run:
         name: Build image
         command: |
-             cd cherokee/${target}/buildroot-2017.08/ && make
+             cd cherokee/${target}/buildroot-${BUILDROOT_VERSION}/ && make
         no_output_timeout: 1200
     - store_artifacts:
-        path: cherokee/raspberrypi2/buildroot-2017.08/output/images/
+        path: cherokee/raspberrypi2/buildroot-${BUILDROOT_VERSION}/output/images/
     - store_artifacts:
-        path: cherokee/raspberrypi3/buildroot-2017.08/output/images/
+        path: cherokee/raspberrypi3/buildroot-${BUILDROOT_VERSION}/output/images/
 
 
 jobs:
@@ -93,10 +93,12 @@ jobs:
     <<: *defaults
     environment:
       target: raspberrypi2
+      BUILDROOT_VERSION: "2018.02.7"
   raspberrypi3:
     <<: *defaults
     environment:
       target: raspberrypi3
+      BUILDROOT_VERSION: "2018.02.7"
   speedsaver_orangepi:
     environment:
       target: orangepi_zero
