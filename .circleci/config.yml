@@ -54,13 +54,14 @@ defaults: &defaults
     - run:
         name: Prepare artifacts
         command: |
-             mv cherokee/${target}/buildroot-${BUILDROOT_VERSION}/output/images \
-                cherokee/${target}/output/images-${BUILDROOT_VERSION}
+            mkdir cherokee/${target}/artifacts/ &&
+                mv cherokee/${target}/buildroot-${BUILDROOT_VERSION}/output/images \
+                cherokee/${target}/artifacts/images-${BUILDROOT_VERSION}
         no_output_timeout: 1200
     - store_artifacts:
-        path: cherokee/raspberrypi2/output/images/
+        path: cherokee/raspberrypi2/artifacts/images/
     - store_artifacts:
-        path: cherokee/raspberrypi3/output/images/
+        path: cherokee/raspberrypi3/artifacts/images/
 
 
 jobs:
