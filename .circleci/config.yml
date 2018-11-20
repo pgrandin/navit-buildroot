@@ -59,9 +59,9 @@ defaults: &defaults
                 cherokee/${target}/artifacts/images-${BUILDROOT_VERSION}
         no_output_timeout: 1200
     - store_artifacts:
-        path: cherokee/raspberrypi2/artifacts/images/
+        path: cherokee/raspberrypi2/artifacts/
     - store_artifacts:
-        path: cherokee/raspberrypi3/artifacts/images/
+        path: cherokee/raspberrypi3/artifacts/
 
 
 jobs:
