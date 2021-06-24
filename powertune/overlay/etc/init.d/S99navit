@@ -1,0 +1,18 @@
+#!/bin/sh                             
+
+case "$1" in
+  start)
+    /sbin/modprobe i2c-dev
+    /usr/bin/navit_wrapper.sh &
+    ;;
+  stop)
+    exit 1
+    ;;
+  *)
+    exit 1
+    ;;
+esac
+
+exit 0
+
+

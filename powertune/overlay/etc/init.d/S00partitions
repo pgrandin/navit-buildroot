@@ -1,0 +1,14 @@
+dd if=/root/wait.fb of=/dev/fb0 
+(
+echo "d"
+echo "2"
+echo "n"
+echo "p"
+echo "2"
+echo
+echo
+echo "w"
+) | fdisk /dev/mmcblk0
+chmod -x /etc/init.d/S00partitions
+touch /tmp/resized
+reboot
