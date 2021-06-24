@@ -167,7 +167,7 @@ jobs:
       - checkout
       - run:
           name: setup prerequisites
-          command: apt-get update && apt-get install -y  expect-dev wget git build-essential file cpio unzip python bc bison flex
+          command: apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y  expect-dev wget git build-essential file cpio unzip python bc bison flex
       - run:
           name: Prepare build
           command: |
