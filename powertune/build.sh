@@ -8,8 +8,6 @@ if [ -z ${target+x} ]; then
 fi
 
 BUILDROOT_DIR="${target}"
-COMMIT="650818fb3a6fb7b9bd9fcefabbc187c1bbe95e0a"
-BUILDROOT_VERSION="${COMMIT}"
 
 mkdir -p ${BUILDROOT_DIR}
 
