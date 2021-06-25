@@ -24,4 +24,4 @@ pushd ${BUILDROOT_DIR}/buildroot-${BUILDROOT_VERSION}/
 
 git reset --hard ${COMMIT}
 
-patch -p0 < ../../../packages/package.patch
+# patch -p0 < ../../../packages/package.patch
