@@ -204,8 +204,8 @@ jobs:
       - save_cache:
           key: cache-{{ .Environment.CIRCLE_JOB }}-toolchain-{{ checksum "powertune/glibc_defconfig" }}
           paths:
-            - "powertune/orangepi_zero/buildroot-${BUILDROOT_VERSION}/output/host/"
-            - "powertune/orangepi_zero/buildroot-${BUILDROOT_VERSION}/output/build/"
+            - "powertune/raspberrypi3/buildroot-${BUILDROOT_VERSION}/output/host/"
+            - "powertune/raspberrypi3/buildroot-${BUILDROOT_VERSION}/output/build/"
       - restore_cache:
          keys:
            - cache-{{ .Environment.CIRCLE_JOB }}-kernel-9126e25b0934bd7bd843763310ea4b34c6e139d0
@@ -218,7 +218,7 @@ jobs:
       - save_cache:
           key: cache-{{ .Environment.CIRCLE_JOB }}-kernel-9126e25b0934bd7bd843763310ea4b34c6e139d0
           paths:
-            - "powertune/orangepi_zero/buildroot-${BUILDROOT_VERSION}/output/linux-9126e25b0934bd7bd843763310ea4b34c6e139d0/"
+            - "powertune/raspberrypi3/buildroot-${BUILDROOT_VERSION}/output/linux-9126e25b0934bd7bd843763310ea4b34c6e139d0/"
       - run:
           name: Build image
           command: |
