@@ -122,13 +122,13 @@ jobs:
                [ -d output/build/host-cmake ] || make BR2_JLEVEL=2 host-cmake-rebuild
           no_output_timeout: 1200
       - save_cache:
-          key: cache-{{ .Environment.CIRCLE_JOB }}-toolchain-{{ checksum "${product}/glibc_defconfig" }}
+          key: cache-{{ .Environment.CIRCLE_JOB }}-toolchain-{{ checksum "powertune/glibc_defconfig" }}
           paths:
             - "powertune/raspberrypi3/buildroot-2018.02.7/output/host/"
             - "powertune/raspberrypi3/buildroot-2018.02.7/output/build/"
       - restore_cache:
          keys:
-           - cache-{{ .Environment.CIRCLE_JOB }}-kernel-9126e25b0934bd7bd843763310ea4b34c6e139d0
+           - cache-{{ .Environment.CIRCLE_JOB }}-kernel-9126e25b0934bd7bd843763310ea4b34c6e139d0-v2
       - run:
           name: Build kernel
           command: |
@@ -136,7 +136,7 @@ jobs:
                [ -d output/build/linux-9126e25b0934bd7bd843763310ea4b34c6e139d0 ] || make linux-rebuild
           no_output_timeout: 1200
       - save_cache:
-          key: cache-{{ .Environment.CIRCLE_JOB }}-kernel-9126e25b0934bd7bd843763310ea4b34c6e139d0
+          key: cache-{{ .Environment.CIRCLE_JOB }}-kernel-9126e25b0934bd7bd843763310ea4b34c6e139d0-v2
           paths:
             - "powertune/raspberrypi3/buildroot-2018.02.7/output/linux-9126e25b0934bd7bd843763310ea4b34c6e139d0/"
       - run:
