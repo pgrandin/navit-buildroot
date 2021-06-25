@@ -113,7 +113,7 @@ jobs:
       - run:
           name: Build toolchain
           command: |
-               cd ${product}/${target}/buildroot-${BUILDROOT_VERSION}/ && make toolchain
+               cd ${product}/${target}/buildroot-${BUILDROOT_VERSION}/ && make BR2_JLEVEL=2 toolchain
           no_output_timeout: 1200
       - run:
           name: Build host-cmake
