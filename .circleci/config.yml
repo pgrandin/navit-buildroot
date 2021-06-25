@@ -104,7 +104,7 @@ jobs:
           no_output_timeout: 1200
       - restore_cache:
          keys:
-           - cache-{{ .Environment.CIRCLE_JOB }}-toolchain-{{ checksum "${product}/glibc_defconfig" }}
+           - cache-{{ .Environment.CIRCLE_JOB }}-toolchain-{{ checksum "powertune/glibc_defconfig" }}
       - run:
           name: Download sources
           command: |
