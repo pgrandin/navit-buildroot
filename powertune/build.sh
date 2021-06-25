@@ -22,6 +22,6 @@ cp -r ../packages/* ${BUILDROOT_DIR}/buildroot-${BUILDROOT_VERSION}/package/
 pushd ${BUILDROOT_DIR}/buildroot-${BUILDROOT_VERSION}/
 
 
-git reset --hard ${COMMIT}
+git reset --hard ${BUILDROOT_VERSION}
 
 # patch -p0 < ../../../packages/package.patch
