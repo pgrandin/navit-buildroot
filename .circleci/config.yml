@@ -75,7 +75,7 @@ jobs:
     environment:
       target: raspberrypi3
       BUILDROOT_VERSION: "2018.02.7"
- 
+
   powertune_raspberrypi3:
     environment:
       target: raspberrypi3
